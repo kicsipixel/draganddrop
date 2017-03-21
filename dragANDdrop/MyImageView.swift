@@ -15,6 +15,7 @@ class MyImageView: NSImageView {
 
         // Drawing code here.
         Drapanddrop.drawDrop()
+        
     }
     
     required init?(coder: NSCoder) {
