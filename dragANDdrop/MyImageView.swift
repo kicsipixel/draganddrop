@@ -8,8 +8,10 @@
 
 import Cocoa
 
-class MyImageView: NSImageView {
+var droppedFilePath: String?
 
+class MyImageView: NSImageView {
+    
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 
@@ -25,7 +27,7 @@ class MyImageView: NSImageView {
     
     let fileTypes = ["xml"]
     var fileTypeIsOk = false
-    var droppedFilePath: String?
+    
     
     override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
         if checkExtension(drag: sender) {
@@ -49,7 +51,7 @@ class MyImageView: NSImageView {
         if let board = sender.draggingPasteboard().propertyList(forType: "NSFilenamesPboardType") as? NSArray,
             let filePath  = board[0] as? String {
             droppedFilePath = filePath
-            ViewController().showMePath(path: droppedFilePath!)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "show"), object: nil)
             return true
         }
         return false
