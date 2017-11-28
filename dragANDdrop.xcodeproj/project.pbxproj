@@ -7,23 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		572272451FCDCC9B0091DAAF /* Drapanddrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572272441FCDCC9A0091DAAF /* Drapanddrop.swift */; };
+		572272471FCDCDC70091DAAF /* DragView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572272461FCDCDC70091DAAF /* DragView.swift */; };
 		576646161DEB3C2600D6DB86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576646151DEB3C2600D6DB86 /* AppDelegate.swift */; };
 		576646181DEB3C2600D6DB86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576646171DEB3C2600D6DB86 /* ViewController.swift */; };
 		5766461A1DEB3C2600D6DB86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 576646191DEB3C2600D6DB86 /* Assets.xcassets */; };
 		5766461D1DEB3C2600D6DB86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5766461B1DEB3C2600D6DB86 /* Main.storyboard */; };
-		576646251DEB3D0000D6DB86 /* MyImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576646241DEB3D0000D6DB86 /* MyImageView.swift */; };
-		576646271DEB4AED00D6DB86 /* Drapanddrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576646261DEB4AED00D6DB86 /* Drapanddrop.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		572272441FCDCC9A0091DAAF /* Drapanddrop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drapanddrop.swift; sourceTree = "<group>"; };
+		572272461FCDCDC70091DAAF /* DragView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragView.swift; sourceTree = "<group>"; };
 		576646121DEB3C2600D6DB86 /* dragANDdrop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dragANDdrop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		576646151DEB3C2600D6DB86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		576646171DEB3C2600D6DB86 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		576646191DEB3C2600D6DB86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5766461C1DEB3C2600D6DB86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5766461E1DEB3C2600D6DB86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		576646241DEB3D0000D6DB86 /* MyImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyImageView.swift; sourceTree = "<group>"; };
-		576646261DEB4AED00D6DB86 /* Drapanddrop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drapanddrop.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,13 +56,13 @@
 		576646141DEB3C2600D6DB86 /* dragANDdrop */ = {
 			isa = PBXGroup;
 			children = (
-				576646261DEB4AED00D6DB86 /* Drapanddrop.swift */,
+				572272441FCDCC9A0091DAAF /* Drapanddrop.swift */,
 				576646151DEB3C2600D6DB86 /* AppDelegate.swift */,
 				576646171DEB3C2600D6DB86 /* ViewController.swift */,
-				576646241DEB3D0000D6DB86 /* MyImageView.swift */,
 				576646191DEB3C2600D6DB86 /* Assets.xcassets */,
 				5766461B1DEB3C2600D6DB86 /* Main.storyboard */,
 				5766461E1DEB3C2600D6DB86 /* Info.plist */,
+				572272461FCDCDC70091DAAF /* DragView.swift */,
 			);
 			path = dragANDdrop;
 			sourceTree = "<group>";
@@ -140,9 +140,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				576646181DEB3C2600D6DB86 /* ViewController.swift in Sources */,
+				572272451FCDCC9B0091DAAF /* Drapanddrop.swift in Sources */,
+				572272471FCDCDC70091DAAF /* DragView.swift in Sources */,
 				576646161DEB3C2600D6DB86 /* AppDelegate.swift in Sources */,
-				576646251DEB3D0000D6DB86 /* MyImageView.swift in Sources */,
-				576646271DEB4AED00D6DB86 /* Drapanddrop.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

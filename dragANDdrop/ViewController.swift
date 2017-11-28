@@ -10,20 +10,23 @@ import Cocoa
 
 class ViewController: NSViewController {
     
+    @IBOutlet var imageView: NSImageView!
+    @IBOutlet var dragView: DragView!
     @IBOutlet var pathLabel: NSTextField!
     
     
     override func viewDidLoad() {
 
         super.viewDidLoad()
-         NotificationCenter.default.addObserver(self, selector: #selector(showMePath), name: NSNotification.Name(rawValue: "show"), object: nil)
-        
-        self.pathLabel.stringValue = "path will come here..."
-
-        // Do any additional setup after loading the view.
+        dragView.delegate = self
+        imageView.image = Drapanddrop.imageOfDrop
     }
 
-    func showMePath() {
-            self.pathLabel.stringValue = droppedFilePath!
+}
+
+extension ViewController: DragViewDelegate {
+    func dragView(didDragFileWith URL: NSURL) {
+        print(URL.path!)
+        pathLabel.stringValue = URL.pathComponents![(URL.pathComponents?.count)! - 1]
     }
 }
