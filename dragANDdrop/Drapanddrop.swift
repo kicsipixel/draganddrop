@@ -25,7 +25,7 @@ public class Drapanddrop : NSObject {
 
     @objc dynamic public class func drawDrop(frame targetFrame: NSRect = NSRect(x: 0, y: 0, width: 120, height: 120), resizing: ResizingBehavior = .aspectFit) {
         //// General Declarations
-        let context = NSGraphicsContext.current()!.cgContext
+        let context = NSGraphicsContext.current!.cgContext
         
         //// Resize to Target Frame
         NSGraphicsContext.saveGraphicsState()

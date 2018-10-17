@@ -7,20 +7,17 @@
 //
 
 import Cocoa
-protocol DragViewDelegate {
-    func dragView(didDragFileWith URL: NSURL)
-}
 
 class DragView: NSView {
     
-    var delegate: DragViewDelegate?
-
+    var filePath: String?
     private var fileTypeIsOk = false
-    private var acceptedFileExtension = ["xml"]
+    private var acceptedFileExtension = ["gz"]
     
     required init?(coder: NSCoder) {
         super .init(coder: coder)
-        register(forDraggedTypes: [NSFilenamesPboardType])
+        
+        registerForDraggedTypes([NSPasteboard.PasteboardType.fileURL])
     }
     
     override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
@@ -33,31 +30,26 @@ class DragView: NSView {
     }
     
     override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
-        guard let draggedFileURL = sender.draggedFileURL else {
-            return false
-        }
-        
-        if fileTypeIsOk {
-            delegate?.dragView(didDragFileWith: draggedFileURL)
-        }
-        
+     
+        guard let pasteboard = sender.draggingPasteboard().propertyList(forType: NSPasteboard.PasteboardType(rawValue: "NSFilenamesPboardType")) as? NSArray,
+            let path = pasteboard[0] as? String
+            else { return false }
+                
         return true
     }
-    
+
+
     fileprivate func checkExtension(drag: NSDraggingInfo) -> Bool {
-        guard let fileExtension = drag.draggedFileURL?.pathExtension?.lowercased() else {
-            return false
-        }
-        return acceptedFileExtension.contains(fileExtension)
-    }
-}
-
-
-extension NSDraggingInfo {
-    var draggedFileURL: NSURL? {
-        let filenames = draggingPasteboard().propertyList(forType: NSFilenamesPboardType) as? [String]
-        let path = filenames?.first
+        guard let board = drag.draggingPasteboard().propertyList(forType: NSPasteboard.PasteboardType(rawValue: "NSFilenamesPboardType")) as? NSArray,
+            let path = board[0] as? String
+            else { return false }
         
-        return path.map(NSURL.init)
+        let suffix = URL(fileURLWithPath: path).pathExtension
+        for ext in self.acceptedFileExtension {
+            if ext.lowercased() == suffix {
+                return acceptedFileExtension.contains(ext.lowercased())
+            }
+        }
+        return false
     }
 }

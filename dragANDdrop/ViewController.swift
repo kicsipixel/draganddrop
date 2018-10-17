@@ -23,10 +23,3 @@ class ViewController: NSViewController {
     }
 
 }
-
-extension ViewController: DragViewDelegate {
-    func dragView(didDragFileWith URL: NSURL) {
-        print(URL.path!)
-        pathLabel.stringValue = URL.pathComponents![(URL.pathComponents?.count)! - 1]
-    }
-}
