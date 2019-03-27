@@ -12,44 +12,69 @@ class DragView: NSView {
     
     var filePath: String?
     private var fileTypeIsOk = false
-    private var acceptedFileExtension = ["gz"]
+    private var fileTypes = ["xml"]
+    var droppedFilePath: String?
     
     required init?(coder: NSCoder) {
-        super .init(coder: coder)
-        
-        registerForDraggedTypes([NSPasteboard.PasteboardType.fileURL])
+        super.init(coder: coder)
+
+        let draggedType = NSPasteboard.PasteboardType(kUTTypeURL as String)
+        self.registerForDraggedTypes([draggedType])
     }
     
     override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
-        fileTypeIsOk = checkExtension(drag: sender)
-        return []
+        if checkExtension(drag: sender) {
+            fileTypeIsOk = true
+            return .copy
+        } else {
+            fileTypeIsOk = false
+            return []
+        }
     }
     
     override func draggingUpdated(_ sender: NSDraggingInfo) -> NSDragOperation {
-        return fileTypeIsOk ? .copy : []
+        if fileTypeIsOk {
+            return .copy
+        } else {
+            return []
+        }
     }
     
     override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
-     
-        guard let pasteboard = sender.draggingPasteboard().propertyList(forType: NSPasteboard.PasteboardType(rawValue: "NSFilenamesPboardType")) as? NSArray,
-            let path = pasteboard[0] as? String
-            else { return false }
-                
-        return true
+        if let board = sender.draggingPasteboard.propertyList(forType: convertToNSPasteboardPasteboardType("NSFilenamesPboardType")) as? NSArray,
+            let filePath  = board[0] as? String {
+            droppedFilePath = filePath
+            print(droppedFilePath)
+            return true
+        }
+        return false
     }
-
-
-    fileprivate func checkExtension(drag: NSDraggingInfo) -> Bool {
-        guard let board = drag.draggingPasteboard().propertyList(forType: NSPasteboard.PasteboardType(rawValue: "NSFilenamesPboardType")) as? NSArray,
-            let path = board[0] as? String
-            else { return false }
-        
-        let suffix = URL(fileURLWithPath: path).pathExtension
-        for ext in self.acceptedFileExtension {
-            if ext.lowercased() == suffix {
-                return acceptedFileExtension.contains(ext.lowercased())
+    
+    func checkExtension(drag: NSDraggingInfo) -> Bool {
+        if let board = drag.draggingPasteboard.propertyList(forType: convertToNSPasteboardPasteboardType("NSFilenamesPboardType")) as? NSArray, let path = board[0] as? String {
+            let url = NSURL(fileURLWithPath: path)
+            if let fileExtension = url.pathExtension?.lowercased() {
+                return fileTypes.contains(fileExtension)
             }
         }
         return false
     }
+    
 }
+
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToNSPasteboardPasteboardTypeArray(_ input: [String]) -> [NSPasteboard.PasteboardType] {
+    return input.map { key in NSPasteboard.PasteboardType(key) }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSPasteboardPasteboardType(_ input: NSPasteboard.PasteboardType) -> String {
+    return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToNSPasteboardPasteboardType(_ input: String) -> NSPasteboard.PasteboardType {
+    return NSPasteboard.PasteboardType(rawValue: input)
+}
+
