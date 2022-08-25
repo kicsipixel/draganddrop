@@ -9,11 +9,9 @@
 //  http://www.paintcodeapp.com
 //
 
-
-
 import Cocoa
 
-public class Drapanddrop : NSObject {
+public class Drapanddrop: NSObject {
 
     //// Cache
 
@@ -26,13 +24,12 @@ public class Drapanddrop : NSObject {
     @objc dynamic public class func drawDrop(frame targetFrame: NSRect = NSRect(x: 0, y: 0, width: 120, height: 120), resizing: ResizingBehavior = .aspectFit) {
         //// General Declarations
         let context = NSGraphicsContext.current!.cgContext
-        
+
         //// Resize to Target Frame
         NSGraphicsContext.saveGraphicsState()
         let resizedFrame: NSRect = resizing.apply(rect: NSRect(x: 0, y: 0, width: 120, height: 120), target: targetFrame)
         context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
         context.scaleBy(x: resizedFrame.width / 120, y: resizedFrame.height / 120)
-
 
         //// Color Declarations
         let fillColor = NSColor(red: 0.294, green: 0.616, blue: 0.737, alpha: 1)
@@ -41,7 +38,6 @@ public class Drapanddrop : NSObject {
         //// draganddrop
         //// Rectangle
         //// path0_fill Drawing
-
 
         //// Group 5
         //// path1_stroke_2x Drawing
@@ -481,11 +477,6 @@ public class Drapanddrop : NSObject {
         fillColor.setFill()
         path1_stroke_2xPath.fill()
 
-
-
-
-
-
         //// file
         //// Vector
         //// path2_fill Drawing
@@ -505,7 +496,6 @@ public class Drapanddrop : NSObject {
         path2_fillPath.fill()
 
         NSGraphicsContext.restoreGraphicsState()
-
 
         //// path3_stroke Drawing
         let path3_strokePath = NSBezierPath()
@@ -590,9 +580,6 @@ public class Drapanddrop : NSObject {
         fillColor.setFill()
         path3_strokePath.fill()
 
-
-
-
         //// XML
         //// path4_fill Drawing
         let path4_fillPath = NSBezierPath()
@@ -612,7 +599,6 @@ public class Drapanddrop : NSObject {
         path4_fillPath.close()
         fillColor.setFill()
         path4_fillPath.fill()
-
 
         //// path5_fill Drawing
         let path5_fillPath = NSBezierPath()
@@ -636,7 +622,6 @@ public class Drapanddrop : NSObject {
         fillColor.setFill()
         path5_fillPath.fill()
 
-
         //// path6_fill Drawing
         let path6_fillPath = NSBezierPath()
         path6_fillPath.move(to: NSPoint(x: 64.87, y: 45.89))
@@ -649,9 +634,6 @@ public class Drapanddrop : NSObject {
         path6_fillPath.close()
         fillColor.setFill()
         path6_fillPath.fill()
-
-
-
 
         //// Vector 2
         //// path2_fill 2 Drawing
@@ -671,7 +653,7 @@ public class Drapanddrop : NSObject {
         path2_fill2Path.fill()
 
         NSGraphicsContext.restoreGraphicsState()
-        
+
         NSGraphicsContext.restoreGraphicsState()
 
     }
@@ -683,7 +665,7 @@ public class Drapanddrop : NSObject {
             return Cache.imageOfDrop!
         }
 
-        Cache.imageOfDrop = NSImage(size: NSSize(width: 120, height: 120), flipped: false) { _ in 
+        Cache.imageOfDrop = NSImage(size: NSSize(width: 120, height: 120), flipped: false) { _ in
             Drapanddrop.drawDrop()
 
             return true
@@ -691,9 +673,6 @@ public class Drapanddrop : NSObject {
 
         return Cache.imageOfDrop!
     }
-
-
-
 
     @objc(DrapanddropResizingBehavior)
     public enum ResizingBehavior: Int {
@@ -712,17 +691,17 @@ public class Drapanddrop : NSObject {
             scales.height = abs(target.height / rect.height)
 
             switch self {
-                case .aspectFit:
-                    scales.width = min(scales.width, scales.height)
-                    scales.height = scales.width
-                case .aspectFill:
-                    scales.width = max(scales.width, scales.height)
-                    scales.height = scales.width
-                case .stretch:
-                    break
-                case .center:
-                    scales.width = 1
-                    scales.height = 1
+            case .aspectFit:
+                scales.width = min(scales.width, scales.height)
+                scales.height = scales.width
+            case .aspectFill:
+                scales.width = max(scales.width, scales.height)
+                scales.height = scales.width
+            case .stretch:
+                break
+            case .center:
+                scales.width = 1
+                scales.height = 1
             }
 
             var result = rect.standardized

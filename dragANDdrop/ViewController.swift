@@ -9,16 +9,13 @@
 import Cocoa
 
 class ViewController: NSViewController {
-    
+
     @IBOutlet var imageView: NSImageView!
     @IBOutlet var dragView: DragView!
     @IBOutlet var pathLabel: NSTextField?
-    
-    
-    override func viewDidLoad() {
 
+    override func viewDidLoad() {
         super.viewDidLoad()
         imageView.image = Drapanddrop.imageOfDrop
     }
 }
-
